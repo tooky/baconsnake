@@ -11,6 +11,17 @@ class Vector
   modulo: (xmod, ymod) ->
     makeVector(correctModulo(@x, xmod), correctModulo(@y, ymod))
 
+  turnLeft: () ->
+    turns = {}
+    turns[makeVector(0,-1)] = makeVector(-1,0)
+    turns[makeVector(-1,0)] = makeVector(0,1)
+    turns[makeVector(0,1)] = makeVector(1,0)
+    turns[makeVector(1,0)] = makeVector(0,-1)
+    return turns[this]
+
+  turnRight: () ->
+    return @.turnLeft().turnLeft().turnLeft()
+
   equals: (vector) ->
     vector.x == @x and vector.y == @y
 
